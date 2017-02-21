@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.hsenid.ORM">
+    <class name="Student" table="tbl_std">
+        <id name="id" type="string">
+            <column name="std_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="std_name" length="100" not-null="true" />
+        </property>
+        <many-to-one name="grade" class="Grade" not-null="true" column="std_grd" cascade="all" />
+        <set name="subjects" table="std_sub" cascade="all">
+            <key>
+                <column name="std_id" not-null="true" />
+            </key>
+            <many-to-many class="Subject">
+                <column name="sub_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.hsenid.ORM">
+    <class name="Grade" table="tbl_grd">
+        <id name="id" column="grd_id" type="string" length="10">
+            <generator class="assigned"/>
+        </id>
+        <many-to-one name="teacher" class="Teacher" column="grd_tchr" not-null="true" unique="true" cascade="all" />
+    </class>
+</hibernate-mapping>
